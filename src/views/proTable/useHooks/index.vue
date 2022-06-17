@@ -43,8 +43,17 @@
 			<div class="header-button-lf">
 				<el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')" v-if="BUTTONS.add">新增用户</el-button>
 				<el-button type="primary" :icon="Upload" plain @click="batchAdd" v-if="BUTTONS.batchAdd">批量添加用户</el-button>
-				<el-button type="primary" :icon="Download" plain @click="downloadFile" v-if="BUTTONS.export">导出用户数据</el-button>
-				<el-button type="danger" :icon="Delete" plain :disabled="!isSelected" @click="batchDelete" v-if="BUTTONS.batchDelete">
+				<el-button type="primary" :icon="Download" plain @click="downloadFile" v-if="BUTTONS.export"
+					>导出用户数据</el-button
+				>
+				<el-button
+					type="danger"
+					:icon="Delete"
+					plain
+					:disabled="!isSelected"
+					@click="batchDelete"
+					v-if="BUTTONS.batchDelete"
+				>
 					批量删除用户
 				</el-button>
 			</div>
@@ -65,7 +74,13 @@
 				{{ scope.row.gender == 1 ? "男" : "女" }}
 			</el-table-column>
 			<el-table-column prop="idCard" label="身份证号" :formatter="defaultFormat" show-overflow-tooltip></el-table-column>
-			<el-table-column prop="email" label="邮箱" :formatter="defaultFormat" show-overflow-tooltip width="240"></el-table-column>
+			<el-table-column
+				prop="email"
+				label="邮箱"
+				:formatter="defaultFormat"
+				show-overflow-tooltip
+				width="240"
+			></el-table-column>
 			<el-table-column prop="address" label="居住地址" :formatter="defaultFormat" show-overflow-tooltip></el-table-column>
 			<el-table-column
 				prop="createTime"
@@ -88,10 +103,18 @@
 				>
 			</el-table-column>
 			<el-table-column label="操作" fixed="right" width="320" v-slot="scope">
-				<el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)" v-if="BUTTONS.view">查看</el-button>
-				<el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)" v-if="BUTTONS.edit">编辑</el-button>
-				<el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)" v-if="BUTTONS.reset">重置密码</el-button>
-				<el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)" v-if="BUTTONS.delete">删除</el-button>
+				<el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)" v-if="BUTTONS.view"
+					>查看</el-button
+				>
+				<el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)" v-if="BUTTONS.edit"
+					>编辑</el-button
+				>
+				<el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)" v-if="BUTTONS.reset"
+					>重置密码</el-button
+				>
+				<el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)" v-if="BUTTONS.delete"
+					>删除</el-button
+				>
 				<span v-if="!BUTTONS.view && !BUTTONS.edit && !BUTTONS.reset && !BUTTONS.delete">--</span>
 			</el-table-column>
 			<template #empty>

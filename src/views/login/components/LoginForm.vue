@@ -33,7 +33,7 @@ const router = useRouter();
 const inputOpt = ref<Array<number>>([]);
 
 // login
-const login = (formEl: FormInstance | undefined) => {
+const login = (formEl: FormInstance | undefined): void => {
 	if (!formEl) return;
 	formEl.validate(async valid => {
 		if (valid) {
@@ -71,7 +71,7 @@ const login = (formEl: FormInstance | undefined) => {
 	});
 };
 
-const initNSByOption = () => {
+const initNSByOption = (): void => {
 	// 回填密码
 	if (sessionStorage.getItem("remeberNS")) {
 		if (parseInt((sessionStorage.getItem("remeberNS") as any).split("|")[2], 10)) {
@@ -97,7 +97,7 @@ const initNSByOption = () => {
 };
 
 // resetForm
-const resetForm = (formEl: FormInstance | undefined) => {
+const resetForm = (formEl: FormInstance | undefined): void => {
 	if (!formEl) return;
 	formEl.resetFields();
 };
@@ -107,6 +107,7 @@ onMounted(() => {
 	document.onkeydown = (e: any) => {
 		e = window.event || e;
 		if (e.code.toLocaleUpperCase() === "ENTER") {
+			e.preventDefault();
 			if (loading.value) return;
 			login(loginFormRef.value);
 		}
