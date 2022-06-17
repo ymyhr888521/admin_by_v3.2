@@ -16,8 +16,6 @@
 - 🚀 使用 vue-router 进行路由权限拦截（403 页面）、页面按钮权限配置
 - 🚀 使用 keep-alive 对整个页面进行缓存，支持多级嵌套页面（缓存路由里可配置、页面切换带动画）
 - 🚀 常用自定义指令开发（复制、水印、拖拽、节流、防抖、长按……）
-- 🚀 使用 Prettier 统一格式化代码，集成 Eslint、Stylelint 代码校验规范（STANDARD.md 文件）
-- 🚀 使用 husky、lint-staged、commitlint、commitizen、cz-git 规范提交信息（STANDARD.md 文件）
 
 ### 安装使用步骤 📔
 
