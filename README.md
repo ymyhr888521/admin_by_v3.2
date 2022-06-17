@@ -21,15 +21,6 @@
 
 ### 安装使用步骤 📔
 
-- **Clone：**
-
-```text
-# Gitee
-git clone https://gitee.com/laramie/Geeker-Admin.git
-# GitHub
-git clone https://github.com/HalseySpicy/Geeker-Admin.git
-```
-
 - **Install：**
 
 ```text
@@ -86,7 +77,7 @@ npm run commit
 ### 文件资源目录 📚
 
 ```text
-Geeker-Admin
+lpf_test_admin
 ├─ .vscode                # vscode推荐配置
 ├─ public                 # 静态资源文件（忽略打包）
 ├─ src

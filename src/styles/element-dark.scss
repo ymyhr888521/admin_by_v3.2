@@ -71,21 +71,24 @@ html.dark {
 	// --el-mask-color: rgb(0 0 0 / 80%);
 	// --el-mask-color-extra-light: rgb(0 0 0 / 30%);
 
-	--geeker-login-shadow-light: 5px 5px 15px rgb(255 255 255 / 20%);
-	--geeker-box-shadow-light: 0 0 10px rgb(255 255 255 / 10%);
-	--geeker-border-light: 1px solid #4c4c4d;
-	--geeker-main-bg-color: #0d0d0d;
-	--geeker-popup-color: #060708;
+	--lpf_test_admin-login-shadow-light: 5px 5px 15px rgb(255 255 255 / 20%);
+	--lpf_test_admin-box-shadow-light: 0 0 10px rgb(255 255 255 / 10%);
+	--lpf_test_admin-border-light: 1px solid #4c4c4d;
+	--lpf_test_admin-main-bg-color: #0d0d0d;
+	--lpf_test_admin-popup-color: #060708;
 
 	// * 以下为自定义暗黑模式内容
 	// login
 	.login-container {
 		background-color: var(--el-fill-color-extra-light) !important;
+
 		.login-box {
 			background-color: var(--el-mask-color) !important;
+
 			.login-form {
 				background-color: var(--el-bg-color) !important;
-				box-shadow: var(--geeker-login-shadow-light) !important;
+				box-shadow: var(--lpf_test_admin-login-shadow-light) !important;
+
 				.logo-text {
 					color: var(--el-text-color-primary) !important;
 				}
@@ -97,6 +100,7 @@ html.dark {
 	::-webkit-scrollbar {
 		background-color: var(--el-scrollbar-bg-color) !important;
 	}
+
 	::-webkit-scrollbar-thumb {
 		background-color: var(--el-border-color-darker);
 	}
@@ -112,7 +116,7 @@ html.dark {
 	.dataVisualize-box {
 		.top-box,
 		.bottom-box {
-			box-shadow: var(--geeker-box-shadow-light) !important;
+			box-shadow: var(--lpf_test_admin-box-shadow-light) !important;
 		}
 	}
 
@@ -138,20 +142,22 @@ html.dark {
 	// el-drawer
 	.el-drawer {
 		.el-drawer__header {
-			border-bottom: var(--geeker-border-light) !important;
+			border-bottom: var(--lpf_test_admin-border-light) !important;
+
 			span {
 				color: var(--el-text-color-primary) !important;
 			}
 		}
+
 		.el-drawer__footer {
-			border-top: var(--geeker-border-light) !important;
+			border-top: var(--lpf_test_admin-border-light) !important;
 		}
 	}
 
 	//  el-dialog
 	.el-dialog {
 		.el-dialog__header {
-			border-bottom: var(--geeker-border-light) !important;
+			border-bottom: var(--lpf_test_admin-border-light) !important;
 		}
 	}
 
@@ -160,10 +166,12 @@ html.dark {
 		.el-aside {
 			.menu {
 				background-color: var(--el-bg-color) !important;
-				border-right: var(--geeker-border-light) !important;
+				border-right: var(--lpf_test_admin-border-light) !important;
+
 				.logo {
-					border-bottom: var(--geeker-border-light) !important;
+					border-bottom: var(--lpf_test_admin-border-light) !important;
 				}
+
 				.el-menu,
 				.el-sub-menu,
 				.el-sub-menu__title {
@@ -171,33 +179,41 @@ html.dark {
 				}
 			}
 		}
+
 		.el-header {
 			.header {
 				background-color: var(--el-bg-color) !important;
 				border-bottom-color: var(--el-border-color-light) !important;
+
 				.header-ri {
 					.icon-style {
 						color: var(--el-text-color-regular) !important;
 					}
+
 					.username {
 						color: var(--el-text-color-regular) !important;
 					}
 				}
 			}
 		}
+
 		.el-main {
-			background-color: var(--geeker-main-bg-color) !important;
+			background-color: var(--lpf_test_admin-main-bg-color) !important;
+
 			.main-box {
 				background-color: var(--el-bg-color) !important;
 			}
 		}
+
 		.el-tabs {
 			background-color: var(--el-bg-color) !important;
 		}
+
 		.el-footer {
 			.footer {
 				background-color: var(--el-bg-color) !important;
 				border-top-color: var(--el-border-color-light) !important;
+
 				a {
 					color: var(--el-text-color-regular) !important;
 				}
@@ -210,11 +226,13 @@ html.dark {
 		.el-menu {
 			background-color: var(--el-bg-color) !important;
 		}
+
 		.el-menu--popup {
 			.el-menu-item {
 				background-color: var(--el-bg-color) !important;
+
 				&.is-active {
-					background-color: var(--geeker-popup-color) !important;
+					background-color: var(--lpf_test_admin-popup-color) !important;
 				}
 			}
 		}
