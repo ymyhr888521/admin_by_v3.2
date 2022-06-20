@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
 	// * 如果访问的地址没有在路由表中重定向到403页面
 	if (routerList.indexOf(to.path) !== -1) return next();
 	next({
-		path: "/login"
+		path: "/403"
 	});
 });
 
