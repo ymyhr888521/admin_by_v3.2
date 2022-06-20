@@ -79,6 +79,16 @@ onMounted(async () => {
 						{ path: "/directives/throttleDirect", title: "节流指令", icon: "menu" },
 						{ path: "/directives/longpressDirect", title: "长按指令", icon: "menu" }
 					]
+				},
+				{
+					icon: "warning-filled",
+					title: "错误页面跳转",
+					path: "/error",
+					children: [
+						{ path: "/404", title: "404页面", icon: "menu" },
+						{ path: "/403", title: "403页面", icon: "menu" },
+						{ path: "/500", title: "500页面", icon: "menu" }
+					]
 				}
 			]
 		};
