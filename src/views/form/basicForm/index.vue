@@ -1,16 +1,16 @@
 <template>
 	<div class="content-box">
 		<el-form :model="formData" label-width="140px">
-			<el-form-item label="Activity name :">
+			<el-form-item label="姓名:">
 				<el-input v-model="formData.name" />
 			</el-form-item>
-			<el-form-item label="Activity zone :">
+			<el-form-item label="地区:">
 				<el-select v-model="formData.region" placeholder="please select your zone">
 					<el-option label="Zone one" value="shanghai" />
 					<el-option label="Zone two" value="beijing" />
 				</el-select>
 			</el-form-item>
-			<el-form-item label="Activity time :">
+			<el-form-item label="日期:">
 				<el-date-picker v-model="formData.date1" type="date" placeholder="Pick a date" />
 				<el-col :span="1" class="text-center">
 					<span class="text-gray-500">-</span>

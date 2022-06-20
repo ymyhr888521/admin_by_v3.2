@@ -1,14 +1,19 @@
+/**
+ * Created By Joker_li
+ * Date: 2022-06-17
+ * Feat: vite_configJs 待完善
+ */
+import vue from "@vitejs/plugin-vue";
 import { defineConfig, loadEnv, ConfigEnv, UserConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
-import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import { wrapperEnv } from "./src/utils/getEnv";
 import { visualizer } from "rollup-plugin-visualizer";
-import viteCompression from "vite-plugin-compression";
-import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import eslintPlugin from "vite-plugin-eslint";
-import vueJsx from "@vitejs/plugin-vue-jsx";
 import importToCDN from "vite-plugin-cdn-import";
+import vueJsx from "@vitejs/plugin-vue-jsx";
+import viteCompression from "vite-plugin-compression";
+import vueSetupExtend from "vite-plugin-vue-setup-extend";
 // import AutoImport from "unplugin-auto-import/vite";
 // import Components from "unplugin-vue-components/vite";
 // import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
@@ -45,6 +50,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			// 代理跨域（mock 不需要配置，这里只是个事列）
 			proxy: {
 				"/api": {
+					// fastmock已停用 easymock
 					// target: "https://www.fastmock.site/mock/f81e8333c1a9276214bcdbc170d9e0a0", // fastmock
 					target: "https://mock.mengxuegu.com/mock/629d727e6163854a32e8307e", // easymock
 					changeOrigin: true,
@@ -67,7 +73,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			// * vite 可以使用 jsx/tsx 语法
 			vueJsx(),
 			// * name 可以写在 script 标签上
-			VueSetupExtend(),
+			vueSetupExtend(),
 			// * demand import element(如果使用了cdn引入,没必要使用element自动导入了)
 			// AutoImport({
 			// 	resolvers: [ElementPlusResolver()]

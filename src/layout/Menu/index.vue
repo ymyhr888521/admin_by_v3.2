@@ -24,38 +24,38 @@ onMounted(async () => {
 		// 暂时写死数据 后期用mockJs模拟
 		const res = {
 			data: [
-				{ icon: "home-filled", title: "这是首页", path: "/home/index" },
-				{ icon: "histogram", title: "首屏可视化", path: "/dataScreen" },
+				{ icon: "data-analysis", title: "h-home", path: "/home/index" },
 				{
 					icon: "data-analysis",
-					title: "我的工作台",
+					title: "工作台",
 					path: "/dashboard",
 					children: [
 						{ path: "/dashboard/dataVisualize", title: "数据可视化", icon: "menu" },
 						{ path: "/dashboard/embedded", title: "内嵌页面", icon: "menu" }
 					]
 				},
+				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
 				{
-					icon: "message-box",
+					icon: "data-analysis",
 					title: "ProTable Test",
 					path: "/proTable",
 					children: [
-						{ path: "/proTable/useHooks", title: "使用 Hooks", icon: "menu" },
-						{ path: "/proTable/useComponent", title: "使用 Component", icon: "menu" }
+						{ path: "/proTable/useHooks", title: "useHooks", icon: "menu" },
+						{ path: "/proTable/useComponent", title: "useComponent", icon: "menu" }
 					]
 				},
 				{
-					icon: "tickets",
+					icon: "data-analysis",
 					title: "ProForm Test",
 					path: "/form",
 					children: [
-						{ path: "/form/basicForm", title: "基础 Form", icon: "menu" },
-						{ path: "/form/validateForm", title: "校验 Form", icon: "menu" },
-						{ path: "/form/dynamicForm", title: "动态 Form", icon: "menu" }
+						{ path: "/form/basicForm", title: "baseForm", icon: "menu" },
+						{ path: "/form/validateForm", title: "validForm", icon: "menu" },
+						{ path: "/form/dynamicForm", title: "dynamicForm", icon: "menu" }
 					]
 				},
 				{
-					icon: "trend-charts",
+					icon: "data-analysis",
 					title: "Echarts Test",
 					path: "/echarts",
 					children: [
@@ -68,8 +68,8 @@ onMounted(async () => {
 					]
 				},
 				{
-					icon: "stamp",
-					title: "Custom Directives",
+					icon: "data-analysis",
+					title: /*"Custom Directives"*/ "自定义指令",
 					path: "/directives",
 					children: [
 						{ path: "/directives/copyDirect", title: "复制指令", icon: "menu" },

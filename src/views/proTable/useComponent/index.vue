@@ -14,6 +14,16 @@
 			<template #expand="scope">
 				{{ scope.row }}
 			</template>
+
+			<template #avatar>
+				<el-avatar
+					shape="circle"
+					:size="40"
+					fit="fill"
+					src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+				/>
+			</template>
+
 			<!-- 用户状态 slot -->
 			<template #status="scope">
 				<!-- 如果插槽的值为 el-switch，第一次加载会默认触发 switch 的 @change 方法，所有在外层包一个盒子，点击触发盒子 click 方法 -->
@@ -28,10 +38,10 @@
 			</template>
 			<!-- 表格操作 -->
 			<template #operation="scope">
-				<el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-				<el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
-				<el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)">重置密码</el-button>
-				<el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+				<el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)"></el-button>
+				<el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)"></el-button>
+				<el-button type="primary" link :icon="Refresh" @click="resetPass(scope.row)"></el-button>
+				<el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)"></el-button>
 			</template>
 		</ProTable>
 		<UserDrawer ref="drawerRef"></UserDrawer>
@@ -77,7 +87,7 @@ const renderHeader = (scope: any) => {
 			type="primary"
 			onClick={() => {
 				console.log(scope);
-				ElMessage.success("我是自定义表头");
+				ElMessage.success("我是自定义表头哈哈哈哈哈哈啊哈");
 			}}
 		>
 			{scope.row.label}
@@ -89,30 +99,45 @@ const renderHeader = (scope: any) => {
 const columns: Partial<ColumnProps>[] = [
 	{
 		type: "selection",
-		width: 80,
+		width: 60,
 		fixed: "left"
 	},
 	{
 		type: "index",
 		label: "#",
-		width: 80
+		width: 60
+	},
+	{
+		prop: "avatar",
+		label: "头像",
+		width: 80,
+		renderHeader: () => {
+			return (
+				<el-avatar
+					shape="square"
+					size="40"
+					fit="fill"
+					src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+				/>
+			);
+		}
 	},
 	{
 		type: "expand",
 		label: "Expand",
-		width: 100
+		width: 120
 	},
 	{
 		prop: "username",
-		label: "用户姓名",
+		label: "姓名",
 		search: true,
-		width: 135,
+		width: 120,
 		renderHeader
 	},
 	{
 		prop: "gender",
 		label: "性别",
-		width: "140",
+		width: 90,
 		enum: genderType,
 		search: true,
 		sortable: true,
@@ -120,23 +145,26 @@ const columns: Partial<ColumnProps>[] = [
 	},
 	{
 		prop: "idCard",
-		label: "身份证号",
-		search: true
+		label: "证件号",
+		search: true,
+		width: 120
 	},
 	{
 		prop: "email",
 		label: "邮箱",
-		search: true
+		search: false,
+		width: 120
 	},
 	{
 		prop: "address",
-		label: "居住地址",
-		search: true
+		label: "地址",
+		search: false,
+		width: 120
 	},
 	{
 		prop: "createTime",
-		label: "创建时间",
-		width: 200,
+		label: "时间",
+		width: 180,
 		sortable: true,
 		search: true,
 		searchType: "datetimerange",
@@ -144,20 +172,15 @@ const columns: Partial<ColumnProps>[] = [
 	},
 	{
 		prop: "status",
-		label: "用户状态",
+		label: "状态",
 		sortable: true,
-		width: 160
+		width: 100
 	},
-	// {
-	// 	prop: "avatar",
-	// 	label: "头像",
-	// 	width: 120,
-	// 	image: true
-	// },
+
 	{
 		prop: "operation",
 		label: "操作",
-		width: 320,
+		width: 160,
 		fixed: "right",
 		renderHeader
 	}

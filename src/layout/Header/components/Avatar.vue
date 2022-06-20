@@ -1,22 +1,3 @@
-<template>
-	<el-dropdown trigger="click">
-		<div class="avatar">
-			<img src="@/assets/images/avatar.jpg" alt="avatar" />
-		</div>
-		<template #dropdown>
-			<el-dropdown-menu>
-				<el-dropdown-item @click="openDialog('infoRef')">{{ $t("header.personalData") }}</el-dropdown-item>
-				<el-dropdown-item @click="openDialog('passwordRef')">{{ $t("header.changePassword") }}</el-dropdown-item>
-				<el-dropdown-item @click="logout" divided>{{ $t("header.logout") }}</el-dropdown-item>
-			</el-dropdown-menu>
-		</template>
-	</el-dropdown>
-	<!-- infoDialog -->
-	<InfoDialog ref="infoRef"></InfoDialog>
-	<!-- passwordDialog -->
-	<PasswordDialog ref="passwordRef"></PasswordDialog>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue";
 import InfoDialog from "./InfoDialog.vue";
@@ -30,17 +11,19 @@ const globalStore = GlobalStore();
 
 // logout
 const logout = () => {
-	ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
+	ElMessageBox.confirm("确定要退出登录吗?", "提示", {
 		confirmButtonText: "确定",
 		cancelButtonText: "取消",
 		type: "warning"
 	}).then(() => {
 		router.push({ name: "login" });
 		globalStore.setToken("");
-		ElMessage({
-			type: "success",
-			message: "退出登录成功！"
-		});
+		setTimeout(() => {
+			ElMessage({
+				type: "success",
+				message: "退出成功！"
+			});
+		}, 200);
 	});
 };
 
@@ -55,6 +38,25 @@ const openDialog = (refName: string) => {
 	passwordRef.value?.openDialog();
 };
 </script>
+
+<template>
+	<el-dropdown trigger="click">
+		<div class="avatar">
+			<img src="@/assets/images/avatar.jpg" alt="avatar" />
+		</div>
+		<template #dropdown>
+			<el-dropdown-menu>
+				<el-dropdown-item @click="openDialog('infoRef')">{{ $t("header.personalData") }}</el-dropdown-item>
+				<el-dropdown-item @click="openDialog('passwordRef')" divided>{{ $t("header.changePassword") }}</el-dropdown-item>
+				<el-dropdown-item @click="logout" divided>{{ $t("header.logout") }}</el-dropdown-item>
+			</el-dropdown-menu>
+		</template>
+	</el-dropdown>
+	<!-- infoDialog -->
+	<InfoDialog ref="infoRef"></InfoDialog>
+	<!-- passwordDialog -->
+	<PasswordDialog ref="passwordRef"></PasswordDialog>
+</template>
 
 <style scoped lang="scss">
 @import "../index.scss";

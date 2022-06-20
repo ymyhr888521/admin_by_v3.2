@@ -1,7 +1,3 @@
-<template>
-	<div ref="echartsRef" class="content-box"></div>
-</template>
-
 <script setup lang="ts" name="columnChart">
 import { ref, onMounted } from "vue";
 import * as echarts from "echarts";
@@ -15,7 +11,18 @@ onMounted(() => {
 			formatter: "{a} <br/>{b}: {c} ({d}%)"
 		},
 		legend: {
-			data: ["Direct", "Marketing", "Search Engine", "Email", "Union Ads", "Video Ads", "Baidu", "Google", "Bing", "Others"],
+			data: [
+				"Direct",
+				"Marketing",
+				"Search Engine",
+				"Email",
+				"Union Ads",
+				"Video Ads",
+				"Baidu",
+				"Google",
+				"Bing",
+				"Others"
+			],
 			textStyle: {
 				color: "#a1a1a1"
 			}
@@ -94,6 +101,10 @@ onMounted(() => {
 	useEcharts(myChart, option);
 });
 </script>
+
+<template>
+	<div ref="echartsRef" class="content-box"></div>
+</template>
 
 <style scoped lang="scss">
 @import "./index.scss";
