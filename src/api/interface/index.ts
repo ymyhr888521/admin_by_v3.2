@@ -1,4 +1,9 @@
-// * 请求响应参数(不包含data)
+/**
+ * Created By Joker_li
+ * Date: 2022-06-19
+ * Feat: 请求响应参数 interface/type 注意：仅仅是参数，不是返回值
+ */
+
 export interface Result {
 	code: string;
 	msg: string;

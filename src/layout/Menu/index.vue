@@ -1,31 +1,3 @@
-<template>
-	<div
-		class="menu"
-		:style="{ width: isCollapse ? '65px' : '220px' }"
-		v-loading="loading"
-		element-loading-text="Loading..."
-		:element-loading-spinner="loadingSvg"
-		element-loading-svg-view-box="-10, -10, 50, 50"
-		element-loading-background="rgba(122, 122, 122, 0.01)"
-	>
-		<Logo :isCollapse="isCollapse"></Logo>
-		<el-scrollbar>
-			<el-menu
-				:default-active="activeMenu"
-				:router="true"
-				:collapse="isCollapse"
-				:collapse-transition="false"
-				:unique-opened="true"
-				background-color="#191a20"
-				text-color="#bdbdc0"
-				active-text-color="#fff"
-			>
-				<SubItem :menuList="menuList"></SubItem>
-			</el-menu>
-		</el-scrollbar>
-	</div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
@@ -49,7 +21,7 @@ onMounted(async () => {
 	try {
 		// const res = await getMenuList();
 		// if (!res.data) return;
-
+		// 暂时写死数据 后期用mockJs模拟
 		const res = {
 			data: [
 				{ icon: "home-filled", title: "这是首页", path: "/home/index" },
@@ -107,16 +79,6 @@ onMounted(async () => {
 						{ path: "/directives/throttleDirect", title: "节流指令", icon: "menu" },
 						{ path: "/directives/longpressDirect", title: "长按指令", icon: "menu" }
 					]
-				},
-				{
-					icon: "warning-filled",
-					title: "Error Page",
-					path: "/error",
-					children: [
-						{ path: "/404", title: "404页面", icon: "menu" },
-						{ path: "/403", title: "403页面", icon: "menu" },
-						{ path: "/500", title: "500页面", icon: "menu" }
-					]
 				}
 			]
 		};
@@ -158,6 +120,34 @@ const listeningWindow = () => {
 };
 listeningWindow();
 </script>
+
+<template>
+	<div
+		class="menu"
+		:style="{ width: isCollapse ? '65px' : '220px' }"
+		v-loading="loading"
+		element-loading-text="Loading..."
+		:element-loading-spinner="loadingSvg"
+		element-loading-svg-view-box="-10, -10, 50, 50"
+		element-loading-background="rgba(122, 122, 122, 0.01)"
+	>
+		<Logo :isCollapse="isCollapse"></Logo>
+		<el-scrollbar>
+			<el-menu
+				:default-active="activeMenu"
+				:router="true"
+				:collapse="isCollapse"
+				:collapse-transition="false"
+				:unique-opened="true"
+				background-color="#191a20"
+				text-color="#bdbdc0"
+				active-text-color="#fff"
+			>
+				<SubItem :menuList="menuList"></SubItem>
+			</el-menu>
+		</el-scrollbar>
+	</div>
+</template>
 
 <style scoped lang="scss">
 @import "./index.scss";

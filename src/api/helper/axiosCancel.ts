@@ -1,3 +1,9 @@
+/**
+ * Created By Joker_li
+ * Date: 2022-06-19
+ * Feat: 取消请求钩子函数   类似于abert
+ */
+
 import axios, { AxiosRequestConfig, Canceler } from "axios";
 import { isFunction } from "@/utils/is/index";
 import qs from "qs";

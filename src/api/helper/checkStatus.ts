@@ -1,9 +1,10 @@
-import { ElMessage } from "element-plus";
-
 /**
- * @description: 校验状态码
- * @param {number} status
+ * Created By Joker_li
+ * Date: 2022-06-18
+ * Feat: 校验状态码  待后期加入i18n
  */
+
+import { ElMessage } from "element-plus";
 export const checkStatus = (status: number): void => {
 	switch (status) {
 		case 400:

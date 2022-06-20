@@ -5,7 +5,7 @@ import { ref, onMounted, onUnmounted } from "vue";
  * */
 export const useOnline = () => {
 	const online = ref(true);
-	const showStatus = (val: any) => {
+	const showStatus = (val: any): void => {
 		online.value = typeof val == "boolean" ? val : val.target.online;
 	};
 	// 在页面加载后，设置正确的网络状态

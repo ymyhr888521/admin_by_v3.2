@@ -1,6 +1,11 @@
-// * 请求枚举配置
 /**
- * @description：请求配置
+ * Created By Joker_li
+ * Date: 2022-06-17
+ * Feat: 请求枚举配置
+ */
+
+/**
+ * @description：请求配置 枚举
  */
 export enum ResultEnum {
 	SUCCESS = 200,

@@ -15,14 +15,13 @@ export const useDownload = async (
 	isNotify: boolean = true,
 	fileType: string = ".xlsx"
 ) => {
-	if (isNotify) {
+	isNotify &&
 		ElNotification({
 			title: "温馨提示",
-			message: "如果数据庞大会导致下载缓慢哦，请您耐心等待！",
+			message: "正在下载中，请稍等！",
 			type: "info",
 			duration: 3000
 		});
-	}
 	try {
 		const res = await url(params);
 		// 这个地方的type,经测试不传也没事，因为zip文件不知道type是什么
@@ -31,7 +30,10 @@ export const useDownload = async (
 		// });
 		const blob = new Blob([res]);
 		// 兼容edge不支持createObjectURL方法
-		if ("msSaveOrOpenBlob" in navigator) return window.navigator.msSaveOrOpenBlob(blob, tempName + fileType);
+		if ("msSaveOrOpenBlob" in navigator) {
+			window.navigator.msSaveOrOpenBlob(blob, tempName + fileType);
+			return true;
+		}
 		const blobUrl = window.URL.createObjectURL(blob);
 		const exportFile = document.createElement("a");
 		exportFile.style.display = "none";
@@ -39,10 +41,14 @@ export const useDownload = async (
 		exportFile.href = blobUrl;
 		document.body.appendChild(exportFile);
 		exportFile.click();
-		// 去除下载对url的影响
-		document.body.removeChild(exportFile);
-		window.URL.revokeObjectURL(blobUrl);
+		// 去除下载对url的影响 此处经测试最好写进setTimeout宏任务
+		setTimeout(() => {
+			document.body.removeChild(exportFile);
+			window.URL.revokeObjectURL(blobUrl);
+		}, 200);
 	} catch (error) {
 		console.log(error);
+	} finally {
+		console.log("lpftest???");
 	}
 };

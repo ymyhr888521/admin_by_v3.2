@@ -141,7 +141,7 @@ interface ParentProps {
 }
 withDefaults(defineProps<ParentProps>(), {
 	age: "18",
-	address: () => ["天府广场", "天府三街"],
+	address: () => ["天谷七路", "云水一路"],
 	obj: () => {
 		return {
 			username: "admin",

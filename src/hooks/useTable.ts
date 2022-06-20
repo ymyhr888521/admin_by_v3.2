@@ -81,7 +81,7 @@ export const useTable = (apiUrl: (params: any) => Promise<any>, initParam: any =
 		// 防止手动清空输入框携带参数（可以自定义查询参数前缀）
 		for (let key in state.searchParam) {
 			// * 某些情况下参数为 false/0 也应该携带参数
-			if (state.searchParam[key] || state.searchParam[key] === false || state.searchParam[key] === 0) {
+			if (state.searchParam[key] || [0, false, undefined, null, ""].includes(state.searchParam[key])) {
 				nowSearchParam[key] = state.searchParam[key];
 			}
 		}
@@ -142,11 +142,15 @@ export const useTable = (apiUrl: (params: any) => Promise<any>, initParam: any =
 	};
 
 	return {
-		...toRefs(state),
-		getTableList,
-		search,
-		reset,
-		handleSizeChange,
-		handleCurrentChange
+		...{
+			...toRefs(state)
+		},
+		...{
+			getTableList,
+			search,
+			reset,
+			handleSizeChange,
+			handleCurrentChange
+		}
 	};
 };

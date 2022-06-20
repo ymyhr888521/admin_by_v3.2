@@ -1,24 +1,3 @@
-<template>
-	<div class="login-container flx-center">
-		<SwitchDark class="dark"></SwitchDark>
-		<div class="logo">
-			<img data-v-a16c4222="" src="https://file.beituyun.com/bty/logo/%E5%8F%8D%E7%99%BD-%E6%A8%AA%E7%89%88logo.png" />
-		</div>
-		<div class="login-box">
-			<div class="login-left">
-				<img src="https://file.beituyun.com/bty/admin/wallpaper/login.png" alt="login" />
-			</div>
-			<div class="login-form">
-				<div class="login-logo">
-					<img class="login-icon" src="@/assets/images/avatar.jpg" alt="avatar" />
-					<p class="logo-text">lpf_test_admin</p>
-				</div>
-				<LoginForm ref="loginRef" :age="'20'" :address="['天府三街', '天府四街']" :obj="obj"></LoginForm>
-			</div>
-		</div>
-	</div>
-</template>
-
 <script setup lang="ts" name="login">
 import SwitchDark from "@/components/SwitchDark/index.vue";
 import LoginForm from "./components/LoginForm.vue";
@@ -65,6 +44,27 @@ const obj = reactive<Login.ReqLoginForm>({
 // 使用toRefs解构数据（在template中直接用）
 // const { username, password } = toRefs(obj);
 </script>
+
+<template>
+	<div class="login-container flx-center">
+		<SwitchDark class="dark"></SwitchDark>
+		<div class="logo">
+			<img data-v-a16c4222="" src="https://file.beituyun.com/bty/logo/%E5%8F%8D%E7%99%BD-%E6%A8%AA%E7%89%88logo.png" />
+		</div>
+		<div class="login-box">
+			<div class="login-left">
+				<img src="https://file.beituyun.com/bty/admin/wallpaper/login.png" alt="login" />
+			</div>
+			<div class="login-form">
+				<div class="login-logo">
+					<img class="login-icon" src="@/assets/images/avatar.jpg" alt="avatar" />
+					<p class="logo-text">lpf_test_admin</p>
+				</div>
+				<LoginForm ref="loginRef" :age="'20'" :address="['天谷七路', '云水一路']" :obj="obj"></LoginForm>
+			</div>
+		</div>
+	</div>
+</template>
 
 <style scoped lang="scss">
 @import "./index.scss";
