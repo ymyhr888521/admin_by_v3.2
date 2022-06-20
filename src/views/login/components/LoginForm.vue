@@ -92,7 +92,7 @@ const initNSByOption = (): void => {
 			loginForm.username = str.split("|")[0];
 			loginForm.password = str.split("|")[1];
 			login(loginFormRef.value);
-		}, 200);
+		}, 800);
 	}
 };
 

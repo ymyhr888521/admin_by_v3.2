@@ -20,7 +20,7 @@ const i18nLocale = computed((): any => {
 	if (globalStore.language == "en") {
 		return en;
 	}
-	return "";
+	return zhCn;
 });
 // 配置全局组件大小 (small/default(medium)/large)
 const assemblySize = computed((): string => globalStore.assemblySize);

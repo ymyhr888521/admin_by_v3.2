@@ -1,5 +1,8 @@
-// @see: https://stylelint.io
-
+/**
+ * Created By Joker_li 
+ * Date: 2022-06-17
+ * Feat: stylelint
+ */
 module.exports = {
 	/* 继承某些已有的规则 */
 	extends: [

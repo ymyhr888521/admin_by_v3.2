@@ -1,5 +1,9 @@
 // @see: https://www.prettier.cn
-
+/**
+ * Created By Joker_li 
+ * Date: 2022-06-17
+ * Feat: pretterJs
+ */
 module.exports = {
 	// 超过最大值换行
 	printWidth: 130,
