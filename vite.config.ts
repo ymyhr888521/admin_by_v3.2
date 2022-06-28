@@ -116,7 +116,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 		},
 		// build configure
 		build: {
-			outDir: "dist",
+			outDir: "TheNextWebApp",
 			// esbuild 打包更快，但是不能去除 console.log
 			minify: "esbuild",
 			// minify: "terser",

@@ -9,13 +9,12 @@
 		"serve": "vite",
 		"build:dev": "vue-tsc --noEmit && vite build --mode development",
 		"build:test": "vue-tsc --noEmit && vite build --mode test",
-		"build:pro": "vue-tsc --noEmit && vite build --mode production",
+		"build:pro": "vue-tsc --noEmit --skipLibCheck && vite build --mode production",
 		"preview": "vite preview",
 		"lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
 		"lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
 		"lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
 		"lint:lint-staged": "lint-staged",
-		"prepare": "husky install",
 		"commit": "git pull && git add -A && git-cz && git push"
 	},
 	"dependencies": {
@@ -50,7 +49,6 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-vue": "^8.7.1",
-		"husky": "^8.0.1",
 		"lint-staged": "^12.4.2",
 		"postcss": "^8.4.14",
 		"postcss-html": "^1.4.1",
@@ -74,7 +72,7 @@
 		"vite-plugin-eslint": "^1.6.0",
 		"vite-plugin-html": "^3.2.0",
 		"vite-plugin-vue-setup-extend": "^0.4.0",
-		"vue-tsc": "^0.29.8"
+		"vue-tsc": "^0.38.2"
 	},
 	"config": {
 		"commitizen": {
