@@ -25,6 +25,7 @@ onMounted(async () => {
 		const res = {
 			data: [
 				{ icon: "data-analysis", title: "h-home", path: "/home/index" },
+				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
 				{
 					icon: "data-analysis",
 					title: "工作台",
@@ -34,7 +35,6 @@ onMounted(async () => {
 						{ path: "/dashboard/embedded", title: "内嵌页面", icon: "menu" }
 					]
 				},
-				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
 				{
 					icon: "data-analysis",
 					title: "ProTable Test",

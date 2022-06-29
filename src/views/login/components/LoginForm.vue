@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, inject, onMounted /*,watch*/ } from "vue";
+import { ref, reactive, inject, onMounted /*,watch*/, getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
 import { Login } from "@/api/interface";
 import { InjectProps } from "../interface/index";
@@ -11,6 +11,7 @@ import { GlobalStore } from "@/store";
 import { MenuStore } from "@/store/modules/menu";
 import { TabsStore } from "@/store/modules/tabs";
 import md5 from "js-md5";
+import superplaceholder from "superplaceholder";
 
 const globalStore = GlobalStore();
 const menuStore = MenuStore();
@@ -28,6 +29,9 @@ const loginForm = reactive<Login.ReqLoginForm>({
 
 const loading = ref<boolean>(false);
 const router = useRouter();
+
+const usernameRef = ref(null);
+const passwordRef = ref(null);
 
 // todo ??
 const inputOpt = ref<Array<number>>([]);
@@ -103,6 +107,10 @@ const resetForm = (formEl: FormInstance | undefined): void => {
 };
 
 onMounted(() => {
+	(window as any).__currentInstance = getCurrentInstance();
+
+	console.log(passwordRef.value, ">>>");
+
 	// 监听enter事件（调用登录）
 	document.onkeydown = (e: any) => {
 		e = window.event || e;
@@ -113,6 +121,32 @@ onMounted(() => {
 		}
 	};
 	initNSByOption(); // 回填密码 和 自动登录
+	superplaceholder({
+		el: (usernameRef.value as any)["input"],
+		sentences: ["请输入用户名 / admin", "Please Enter Account / Phone / Email"],
+		options: {
+			letterDelay: 150,
+			sentenceDelay: 1000,
+			autoStart: true,
+			loop: true,
+			shuffle: false,
+			showCursor: true,
+			cursor: "|"
+		} as Record<string, any>
+	});
+	superplaceholder({
+		el: (passwordRef.value as any)["input"],
+		sentences: ["请输入密码 / 123456", "Please Protect Your Password"],
+		options: {
+			letterDelay: 150,
+			sentenceDelay: 1000,
+			autoStart: true,
+			loop: true,
+			shuffle: false,
+			showCursor: true,
+			cursor: "|"
+		} as Record<string, any>
+	});
 });
 
 // watch(
@@ -184,7 +218,7 @@ defineExpose({
 		size="large"
 	>
 		<el-form-item prop="username">
-			<el-input v-model="loginForm.username" placeholder="请输入账号">
+			<el-input ref="usernameRef" v-model="loginForm.username" placeholder="请输入账号 / admin" autocomplete="off">
 				<template #prefix>
 					<el-icon class="el-input__icon"><user /></el-icon>
 				</template>
@@ -192,9 +226,10 @@ defineExpose({
 		</el-form-item>
 		<el-form-item prop="password">
 			<el-input
+				ref="passwordRef"
 				type="password"
 				v-model="loginForm.password"
-				placeholder="请输入密码"
+				placeholder="请输入密码 / 123456"
 				show-password
 				autocomplete="new-password"
 			>

@@ -3,7 +3,7 @@
 	min-width: 550px;
 	height: 100%;
 	min-height: 500px;
-	background: linear-gradient(to bottom right, #80baff, #2b78ff);
+	background: linear-gradient(to bottom right, #87bcfd, #4581ea);
 	.dark {
 		position: absolute;
 		top: 4.5%;
@@ -14,13 +14,20 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
-		width: 96%;
-		height: 94%;
-		padding: 0 4% 0 50px;
+		width: 95%;
+		height: 95%;
+		padding: 0 4% 0 30px;
 		border-radius: 10px;
 		background-color: transparent;
 		.login-left {
-			width: 800px;
+			width: 620px;
+			> h1 {
+				font-weight: bold;
+				font-size: 40px;
+				color: #fff;
+				width: 80%;
+				padding-left: 30px;
+			}
 			img {
 				width: 80%;
 			}
@@ -43,9 +50,9 @@
 				}
 				.logo-text {
 					padding-left: 25px;
-					font-size: 42px;
+					font-size: 38px;
 					font-weight: bold;
-					color: #34495e;
+					color: #50575e;
 					white-space: nowrap;
 				}
 			}
