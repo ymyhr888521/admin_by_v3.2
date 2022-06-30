@@ -7,16 +7,18 @@
 	transition: all 0.3s ease;
 	.logo {
 		box-sizing: border-box;
-		height: 55px;
+		height: 66px;
 		border-bottom: 1px solid #282a35;
 		box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
 		span {
 			font-size: 18px;
 			color: #dadada;
 			white-space: nowrap;
+			font-weight: bold;
+			font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 		}
 		img {
-			width: 30px;
+			width: 40px;
 			object-fit: contain;
 			margin-right: 8px;
 		}

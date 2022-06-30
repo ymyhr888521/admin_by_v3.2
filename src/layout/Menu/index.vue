@@ -25,6 +25,7 @@ onMounted(async () => {
 		const res = {
 			data: [
 				{ icon: "data-analysis", title: "h-home", path: "/home/index" },
+				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
 				{
 					icon: "data-analysis",
 					title: "工作台",
@@ -34,10 +35,9 @@ onMounted(async () => {
 						{ path: "/dashboard/embedded", title: "内嵌页面", icon: "menu" }
 					]
 				},
-				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
 				{
 					icon: "data-analysis",
-					title: "ProTable Test",
+					title: "ProTable",
 					path: "/proTable",
 					children: [
 						{ path: "/proTable/useHooks", title: "useHooks", icon: "menu" },
@@ -46,7 +46,7 @@ onMounted(async () => {
 				},
 				{
 					icon: "data-analysis",
-					title: "ProForm Test",
+					title: "ProForm",
 					path: "/form",
 					children: [
 						{ path: "/form/basicForm", title: "baseForm", icon: "menu" },
@@ -56,7 +56,7 @@ onMounted(async () => {
 				},
 				{
 					icon: "data-analysis",
-					title: "Echarts Test",
+					title: "Echarts",
 					path: "/echarts",
 					children: [
 						{ path: "/echarts/waterChart", title: "水型图", icon: "menu" },
@@ -82,7 +82,7 @@ onMounted(async () => {
 				},
 				{
 					icon: "warning-filled",
-					title: "错误页面跳转",
+					title: "错误页面",
 					path: "/error",
 					children: [
 						{ path: "/404", title: "404页面", icon: "menu" },
@@ -134,7 +134,7 @@ listeningWindow();
 <template>
 	<div
 		class="menu"
-		:style="{ width: isCollapse ? '65px' : '220px' }"
+		:style="{ width: isCollapse ? '65px' : '200px' }"
 		v-loading="loading"
 		element-loading-text="Loading..."
 		:element-loading-spinner="loadingSvg"

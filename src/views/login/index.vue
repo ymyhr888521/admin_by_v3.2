@@ -46,7 +46,7 @@ const obj = reactive<Login.ReqLoginForm>({
 </script>
 
 <template>
-	<div class="login-container flx-center">
+	<!-- <div class="login-container flx-center">
 		<SwitchDark class="dark"></SwitchDark>
 		<div class="logo">
 			<img data-v-a16c4222="" src="https://file.beituyun.com/bty/logo/%E5%8F%8D%E7%99%BD-%E6%A8%AA%E7%89%88logo.png" />
@@ -59,6 +59,23 @@ const obj = reactive<Login.ReqLoginForm>({
 				<div class="login-logo">
 					<img class="login-icon" src="@/assets/images/avatar.jpg" alt="avatar" />
 					<p class="logo-text">lpf_test_admin</p>
+				</div>
+				<LoginForm ref="loginRef" :age="'20'" :address="['天谷七路', '云水一路']" :obj="obj"></LoginForm>
+			</div>
+		</div>
+	</div> -->
+
+	<div class="login-container flx-center">
+		<SwitchDark class="dark"></SwitchDark>
+		<div class="login-box">
+			<div class="login-left">
+				<h1>欢迎访问 | 飞我工作室</h1>
+				<img src="./../../assets/images/welcome.png" alt="login" />
+			</div>
+			<div class="login-form">
+				<div class="login-logo">
+					<img class="login-icon" src="@/assets/images/avatar.jpg" alt="avatar" />
+					<p class="logo-text">飞我人员管理系统</p>
 				</div>
 				<LoginForm ref="loginRef" :age="'20'" :address="['天谷七路', '云水一路']" :obj="obj"></LoginForm>
 			</div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, inject, onMounted /*,watch*/ } from "vue";
+import { ref, reactive, inject, onMounted /*,watch*/, getCurrentInstance, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import { Login } from "@/api/interface";
 import { InjectProps } from "../interface/index";
@@ -10,6 +10,7 @@ import { loginApi } from "@/api/modules/login";
 import { GlobalStore } from "@/store";
 import { MenuStore } from "@/store/modules/menu";
 import { TabsStore } from "@/store/modules/tabs";
+import superplaceholder from "superplaceholder";
 import md5 from "js-md5";
 
 const globalStore = GlobalStore();
@@ -28,6 +29,9 @@ const loginForm = reactive<Login.ReqLoginForm>({
 
 const loading = ref<boolean>(false);
 const router = useRouter();
+
+const usernameRef = ref(null);
+const passwordRef = ref(null);
 
 // todo ??
 const inputOpt = ref<Array<number>>([]);
@@ -49,8 +53,11 @@ const login = (formEl: FormInstance | undefined): void => {
 				// * 登录成功之后清除上个账号的 menulist 和 tabs 数据
 				menuStore.setMenuList([]);
 				tabStore.closeMultipleTab();
-				ElMessage.success("登录成功！");
-				router.push({ name: "home" });
+				ElMessage.success(`用户 ${loginForm.username} 登录成功`);
+				loading.value = false;
+				setTimeout(() => {
+					router.push({ name: "home" });
+				}, 20);
 
 				if (inputOpt.value.find(v => v === 1)) {
 					// 记住密码
@@ -92,19 +99,18 @@ const initNSByOption = (): void => {
 			loginForm.username = str.split("|")[0];
 			loginForm.password = str.split("|")[1];
 			login(loginFormRef.value);
-		}, 800);
+		}, 3000);
 	}
 };
 
 // resetForm
-const resetForm = (formEl: FormInstance | undefined): void => {
-	if (!formEl) return;
+const resetForm = (formEl: FormInstance | undefined): void | boolean => {
+	if (!formEl) return false;
 	formEl.resetFields();
 };
 
-onMounted(() => {
-	// 监听enter事件（调用登录）
-	document.onkeydown = (e: any) => {
+const enterEvent = () => {
+	document.onkeydown = (e: any = {}) => {
 		e = window.event || e;
 		if (e.code.toLocaleUpperCase() === "ENTER") {
 			e.preventDefault();
@@ -112,7 +118,46 @@ onMounted(() => {
 			login(loginFormRef.value);
 		}
 	};
-	initNSByOption(); // 回填密码 和 自动登录
+};
+
+onMounted(async () => {
+	(window as any).__currentInstance = getCurrentInstance();
+
+	// 监听enter事件（调用登录）
+	enterEvent();
+
+	// 回填密码 和 自动登录
+	initNSByOption();
+
+	await nextTick();
+
+	// 输入框动画
+	superplaceholder({
+		el: (usernameRef.value as any)["input"],
+		sentences: ["请输入用户名 / admin", "Please Enter Account / Phone / Email"],
+		options: {
+			letterDelay: 150,
+			sentenceDelay: 1000,
+			autoStart: true,
+			loop: true,
+			shuffle: false,
+			showCursor: true,
+			cursor: "|"
+		} as Record<string, any>
+	});
+	superplaceholder({
+		el: (passwordRef.value as any)["input"],
+		sentences: ["请输入密码 / 123456", "Please Protect Your Password"],
+		options: {
+			letterDelay: 150,
+			sentenceDelay: 1000,
+			autoStart: true,
+			loop: true,
+			shuffle: false,
+			showCursor: true,
+			cursor: "|"
+		} as Record<string, any>
+	});
 });
 
 // watch(
@@ -184,22 +229,27 @@ defineExpose({
 		size="large"
 	>
 		<el-form-item prop="username">
-			<el-input v-model="loginForm.username" placeholder="请输入账号">
+			<el-input ref="usernameRef" v-model="loginForm.username" placeholder="请输入账号 / admin" autocomplete="off">
 				<template #prefix>
-					<el-icon class="el-input__icon"><user /></el-icon>
+					<el-icon class="el-input__icon">
+						<user />
+					</el-icon>
 				</template>
 			</el-input>
 		</el-form-item>
 		<el-form-item prop="password">
 			<el-input
+				ref="passwordRef"
 				type="password"
 				v-model="loginForm.password"
-				placeholder="请输入密码"
+				placeholder="请输入密码 / 123456"
 				show-password
 				autocomplete="new-password"
 			>
 				<template #prefix>
-					<el-icon class="el-input__icon"><lock /></el-icon>
+					<el-icon class="el-input__icon">
+						<lock />
+					</el-icon>
 				</template>
 			</el-input>
 		</el-form-item>
@@ -212,8 +262,8 @@ defineExpose({
 		</div>
 	</el-form>
 	<div class="login-btn">
-		<el-button :icon="CircleClose" round @click="resetForm(loginFormRef)" size="large">重置</el-button>
-		<el-button :icon="UserFilled" round @click="login(loginFormRef)" size="large" type="primary" :loading="loading">
+		<el-button :icon="CircleClose" :loading="loading" round @click="resetForm(loginFormRef)" size="large">重置 </el-button>
+		<el-button :icon="UserFilled" :loading="loading" round @click="login(loginFormRef)" size="large" type="primary">
 			登录
 		</el-button>
 	</div>
