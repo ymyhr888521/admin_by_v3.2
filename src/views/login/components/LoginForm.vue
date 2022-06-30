@@ -12,6 +12,7 @@ import { MenuStore } from "@/store/modules/menu";
 import { TabsStore } from "@/store/modules/tabs";
 import superplaceholder from "superplaceholder";
 import md5 from "js-md5";
+import { showFullScreenLoading, tryHideFullScreenLoading } from "@/config/serviceLoading";
 
 const globalStore = GlobalStore();
 const menuStore = MenuStore();
@@ -42,6 +43,7 @@ const login = (formEl: FormInstance | undefined): void => {
 	formEl.validate(async valid => {
 		if (valid) {
 			loading.value = true;
+			showFullScreenLoading();
 			try {
 				const requestLoginForm: Login.ReqLoginForm = {
 					username: loginForm.username,
@@ -57,7 +59,8 @@ const login = (formEl: FormInstance | undefined): void => {
 				loading.value = false;
 				setTimeout(() => {
 					router.push({ name: "home" });
-				}, 20);
+					tryHideFullScreenLoading();
+				}, 2000);
 
 				if (inputOpt.value.find(v => v === 1)) {
 					// 记住密码
@@ -73,9 +76,13 @@ const login = (formEl: FormInstance | undefined): void => {
 				}
 			} finally {
 				loading.value = false;
+				setTimeout(() => {
+					tryHideFullScreenLoading();
+				}, 2000);
 			}
 		}
 	});
+	``;
 };
 
 const initNSByOption = (): void => {
