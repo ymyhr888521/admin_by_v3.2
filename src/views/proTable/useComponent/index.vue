@@ -155,12 +155,12 @@ const columns: Partial<ColumnProps>[] = [
 		search: false,
 		width: 120
 	},
-	{
-		prop: "address",
-		label: "地址",
-		search: false,
-		width: 120
-	},
+	// {
+	// 	prop: "address",
+	// 	label: "地址",
+	// 	search: false,
+	// 	width: 120
+	// },
 	{
 		prop: "createTime",
 		label: "时间",

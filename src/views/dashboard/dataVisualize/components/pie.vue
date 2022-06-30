@@ -1,5 +1,4 @@
 <template>
-	<!-- Gitee / GitHub 访问量占比 -->
 	<div class="echarts" id="pie"></div>
 </template>
 <script setup lang="ts" name="pie">
@@ -9,17 +8,17 @@ const initChart = (data: any): ECharts => {
 	const echarts: ECharts = init(echartsBox);
 	const option = {
 		title: {
-			text: "Gitee / GitHub",
-			subtext: "访问占比",
+			text: "JD / MI STORE",
+			subtext: "销售占比",
 			left: "56%",
 			top: "45%",
 			textAlign: "center",
 			textStyle: {
-				fontSize: 18,
-				color: "#767676"
+				fontSize: 14,
+				color: "#666"
 			},
 			subtextStyle: {
-				fontSize: 15,
+				fontSize: 12,
 				color: "#a1a1a1"
 			}
 		},
@@ -27,16 +26,16 @@ const initChart = (data: any): ECharts => {
 			trigger: "item"
 		},
 		legend: {
-			top: "4%",
+			top: "8%",
 			left: "2%",
 			orient: "vertical",
 			icon: "circle", //图例形状
 			align: "left",
 			itemGap: 20,
 			textStyle: {
-				fontSize: 13,
-				color: "#a1a1a1",
-				fontWeight: 500
+				fontSize: 12,
+				color: "#000",
+				fontWeight: 100
 			},
 			formatter: function (name: string) {
 				let dataCopy = "";
@@ -72,7 +71,7 @@ const initChart = (data: any): ECharts => {
 					show: true,
 					formatter: "{d}%",
 					fontWeight: 400,
-					fontSize: 19,
+					fontSize: 12,
 					color: "#a1a1a1"
 				},
 				color: [

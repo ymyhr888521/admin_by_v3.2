@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="header">
 import CollapseIcon from "./components/CollapseIcon.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
 import Fullscreen from "./components/Fullscreen.vue";

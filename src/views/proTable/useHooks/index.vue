@@ -93,13 +93,13 @@
 				show-overflow-tooltip
 				width="180"
 			></el-table-column>
-			<el-table-column
+			<!-- <el-table-column
 				prop="address"
 				label="地址"
 				width="140"
 				:formatter="defaultFormat"
 				show-overflow-tooltip
-			></el-table-column>
+			></el-table-column> -->
 			<el-table-column
 				prop="createTime"
 				label="创建时间"

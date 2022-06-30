@@ -1,30 +1,46 @@
-<template>
-	<div>
-		<el-tooltip effect="dark" :content="$t('header.theme')" placement="bottom">
-			<i :class="'iconfont icon-zhuti'" class="icon-style" @click="open"></i>
-		</el-tooltip>
-		<el-drawer v-model="drawerVisible" :title="$t('header.themeSetting')" size="300px">
-			<el-divider content-position="center">{{ $t("header.theme") }}</el-divider>
-			<div class="theme-item">
-				<span>{{ $t("header.darkMode") }}</span>
-				<SwitchDark></SwitchDark>
-			</div>
-		</el-drawer>
-	</div>
-</template>
+/** * Created By Joker_li * Date: 2022-06-30 * Feat: 重写换肤功能 */
 
 <script setup lang="ts">
-import { ref } from "vue";
-import SwitchDark from "@/components/SwitchDark/index.vue";
+import { computed } from "vue";
 import { useDark } from "@/hooks/useDark";
+import { GlobalStore } from "@/store";
+const globalStore = GlobalStore();
 
-useDark();
+const { switchTheme } = useDark();
 
-const drawerVisible = ref(false);
-const open = () => {
-	drawerVisible.value = true;
+const themeConfig = computed(
+	(): {
+		primary: string;
+		isDark: boolean;
+	} => globalStore.themeConfig
+);
+
+const onAddDarkChange = (value: boolean): void => {
+	globalStore.setThemeConfig({
+		...themeConfig.value,
+		isDark: value
+	});
+	setTimeout(() => {
+		switchTheme();
+	}, 20);
 };
 </script>
+
+<template>
+	<el-dropdown trigger="click" @command="onAddDarkChange">
+		<span>
+			<el-tooltip effect="dark" content="换肤" placement="bottom">
+				<i :class="'iconfont icon-zhuti'" class="icon-style"></i>
+			</el-tooltip>
+		</span>
+		<template #dropdown>
+			<el-dropdown-menu>
+				<el-dropdown-item :disabled="!themeConfig.isDark" :command="false">浅色模式</el-dropdown-item>
+				<el-dropdown-item :disabled="themeConfig.isDark" :command="true">深色模式</el-dropdown-item>
+			</el-dropdown-menu>
+		</template>
+	</el-dropdown>
+</template>
 
 <style scoped lang="scss">
 @import "../index.scss";

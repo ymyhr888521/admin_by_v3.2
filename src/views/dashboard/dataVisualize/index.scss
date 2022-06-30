@@ -32,7 +32,7 @@
 				padding: 40px 0 120px 30px;
 				overflow: hidden;
 				color: #ffffff;
-				background: url("./images/book-bg.png");
+				background: linear-gradient(to bottom left, #ff0, #f60, #f40, #f20);
 				background-size: 100% 100%;
 				border-radius: 20px;
 				.left-title {
@@ -47,13 +47,11 @@
 					width: 90px;
 					height: 90px;
 					margin: 40px 0 20px;
-					background: #ffffff;
-					background-color: #ffffff;
-					border-radius: 20px;
-					box-shadow: 0 10px 20px rgb(0 0 0 / 14%);
+					border-radius: 50%;
+					overflow: hidden;
 					img {
-						width: 60px;
-						height: 65px;
+						width: 100%;
+						height: 100%;
 					}
 				}
 				.left-number {
@@ -86,13 +84,13 @@
 						width: 70px;
 						height: 70px;
 						margin-bottom: 10px;
-						background-color: #ffffff;
-						border-radius: 19px;
+						border-radius: 50%;
+						overflow: hidden;
 					}
 				}
 				img {
-					width: 33px;
-					height: 33px;
+					width: 100%;
+					height: 100%;
 				}
 				.item-value {
 					margin-bottom: 4px;
