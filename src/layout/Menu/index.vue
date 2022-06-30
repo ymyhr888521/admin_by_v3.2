@@ -81,6 +81,16 @@ onMounted(async () => {
 					]
 				},
 				{
+					icon: "data-analysis",
+					title: "走马灯",
+					path: "/proCarousel",
+					children: [
+						{ path: "/proCarousel/carousel111", title: "carousel1", icon: "menu" },
+						{ path: "/proCarousel/carousel222", title: "carousel2", icon: "menu" }
+					]
+				},
+
+				{
 					icon: "warning-filled",
 					title: "错误页面",
 					path: "/error",
