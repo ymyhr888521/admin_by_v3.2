@@ -46,6 +46,7 @@ const obj = reactive<Login.ReqLoginForm>({
 </script>
 
 <template>
+	<!-- infront demo1 -->
 	<!-- <div class="login-container flx-center">
 		<SwitchDark class="dark"></SwitchDark>
 		<div class="logo">
@@ -65,6 +66,7 @@ const obj = reactive<Login.ReqLoginForm>({
 		</div>
 	</div> -->
 
+	<!-- infront demo2 -->
 	<div class="login-container flx-center">
 		<SwitchDark class="dark"></SwitchDark>
 		<div class="login-box">
