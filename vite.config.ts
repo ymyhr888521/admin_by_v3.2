@@ -12,6 +12,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import eslintPlugin from "vite-plugin-eslint";
 import importToCDN from "vite-plugin-cdn-import";
 import vueJsx from "@vitejs/plugin-vue-jsx";
+import legacy from "@vitejs/plugin-legacy";
 import viteCompression from "vite-plugin-compression";
 import vueSetupExtend from "vite-plugin-vue-setup-extend";
 // import AutoImport from "unplugin-auto-import/vite";
@@ -56,11 +57,36 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 					changeOrigin: true,
 					rewrite: path => path.replace(/^\/api/, "")
 				}
+				// 字符串简写写法
+				// 	'/api': 'http://localhost:4567',
+				// 	// 选项写法
+				// 	'/api': {
+				// 		target: 'http://jsonplaceholder.typicode.com',
+				// 		changeOrigin: true,
+				// 		rewrite: (path) => path.replace(/^\/api/, '')
+				// 	},
+				// 	// 正则表达式写法
+				// 	'^/api/.*': {
+				// 		target: 'http://jsonplaceholder.typicode.com',
+				// 		changeOrigin: true,
+				// 		rewrite: (path) => path.replace(/^\/fallback/, '')
+				// 	},
+				// 	// 使用 proxy 实例
+				// 	'/api': {
+				// 		target: 'http://jsonplaceholder.typicode.com',
+				// 		changeOrigin: true,
+				// 		configure: (proxy, options) => {
+				// 			// proxy 是 'http-proxy' 的实例
+				// 		}
+				// 	}
 			}
 		},
 		// plugins
 		plugins: [
 			vue(),
+			legacy({
+				targets: ["defaults", "not IE 11"]
+			}),
 			createHtmlPlugin({
 				inject: {
 					data: {
@@ -131,7 +157,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 					// Static resource classification and packaging
 					chunkFileNames: "assets/js/[name]-[hash].js",
 					entryFileNames: "assets/js/[name]-[hash].js",
-					assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+					assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+					manualChunks(id) {
+						//静态资源分拆打包
+						if (id.includes("node_modules")) {
+							return id.toString().split("node_modules/")[1].split("/")[0].toString();
+						}
+					}
 				}
 			}
 		}
