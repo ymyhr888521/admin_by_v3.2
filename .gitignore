@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 demo_pro
+demo_pro.rar
 dist
 dist-ssr
 *.local
