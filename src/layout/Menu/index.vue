@@ -48,12 +48,95 @@ onMounted(async () => {
 	// 获取菜单列表
 	loading.value = true;
 	try {
-		const res = await getMenuList();
-		if (!res.data) return;
+		// const res = await getMenuList();
+		// if (!res.data) return;
+		// 暂时写死数据 后期用mockJs模拟
+		const res = {
+			data: [
+				{ icon: "data-analysis", title: "h-home", path: "/home/index" },
+				{ icon: "data-analysis", title: "大屏可视化", path: "/dataScreen" },
+				{
+					icon: "data-analysis",
+					title: "工作台",
+					path: "/dashboard",
+					children: [
+						{ path: "/dashboard/dataVisualize", title: "数据可视化", icon: "menu" },
+						{ path: "/dashboard/embedded", title: "内嵌页面", icon: "menu" }
+					]
+				},
+				{
+					icon: "data-analysis",
+					title: "ProTable",
+					path: "/proTable",
+					children: [
+						{ path: "/proTable/useHooks", title: "useHooks", icon: "menu" },
+						{ path: "/proTable/useComponent", title: "useComponent", icon: "menu" }
+					]
+				},
+				{
+					icon: "data-analysis",
+					title: "ProForm",
+					path: "/form",
+					children: [
+						{ path: "/form/basicForm", title: "baseForm", icon: "menu" },
+						{ path: "/form/validateForm", title: "validForm", icon: "menu" },
+						{ path: "/form/dynamicForm", title: "dynamicForm", icon: "menu" }
+					]
+				},
+				{
+					icon: "data-analysis",
+					title: "Echarts",
+					path: "/echarts",
+					children: [
+						{ path: "/echarts/waterChart", title: "水型图", icon: "menu" },
+						{ path: "/echarts/columnChart", title: "柱状图", icon: "menu" },
+						{ path: "/echarts/lineChart", title: "折线图", icon: "menu" },
+						{ path: "/echarts/pieChart", title: "饼图", icon: "menu" },
+						{ path: "/echarts/radarChart", title: "雷达图", icon: "menu" },
+						{ path: "/echarts/nestedChart", title: "嵌套环形图", icon: "menu" }
+					]
+				},
+				{
+					icon: "data-analysis",
+					title: /*"Custom Directives"*/ "自定义指令",
+					path: "/directives",
+					children: [
+						{ path: "/directives/copyDirect", title: "复制指令", icon: "menu" },
+						{ path: "/directives/watermarkDirect", title: "水印指令", icon: "menu" },
+						{ path: "/directives/dragDirect", title: "拖拽指令", icon: "menu" },
+						{ path: "/directives/debounceDirect", title: "防抖指令", icon: "menu" },
+						{ path: "/directives/throttleDirect", title: "节流指令", icon: "menu" },
+						{ path: "/directives/longpressDirect", title: "长按指令", icon: "menu" }
+					]
+				},
+				{
+					icon: "data-analysis",
+					title: "走马灯",
+					path: "/proCarousel",
+					children: [
+						{ path: "/proCarousel/carousel111", title: "carousel1", icon: "menu" },
+						{ path: "/proCarousel/carousel222", title: "carousel2", icon: "menu" }
+					]
+				},
+
+				{
+					icon: "warning-filled",
+					title: "错误页面",
+					path: "/error",
+					children: [
+						{ path: "/404", title: "404页面", icon: "menu" },
+						{ path: "/403", title: "403页面", icon: "menu" },
+						{ path: "/500", title: "500页面", icon: "menu" }
+					]
+				}
+			]
+		};
+
 		// 把路由菜单处理成一维数组（存储到 pinia 中）
 		const dynamicRouter = handleRouter(res.data);
 		authStore.setAuthRouter(dynamicRouter);
 		menuStore.setMenuList(res.data);
+		loading.value = false;
 	} finally {
 		loading.value = false;
 	}
