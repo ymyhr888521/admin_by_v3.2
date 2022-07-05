@@ -9,12 +9,14 @@ export default {
 		closeAll: "Close All"
 	},
 	header: {
-		componentSize: "Component Size",
+		componentSize: "Component size",
 		language: "Language",
 		theme: "theme",
-		themeSetting: "Theme setting",
+		layoutConfig: "Layout config",
+		primary: "primary",
 		darkMode: "Dark Mode",
-		lightMode: "Light Mode",
+		greyMode: "Grey mode",
+		weakMode: "Weak mode",
 		fullScreen: "Full Screen",
 		exitFullScreen: "Exit Full Screen",
 		personalData: "Personal Data",

@@ -1,13 +1,3 @@
-<script setup lang="ts" name="header">
-import CollapseIcon from "./components/CollapseIcon.vue";
-import Breadcrumb from "./components/Breadcrumb.vue";
-import Fullscreen from "./components/Fullscreen.vue";
-import Language from "./components/Language.vue";
-import AssemblySize from "./components/AssemblySize.vue";
-import Theme from "./components/Theme.vue";
-import Avatar from "./components/Avatar.vue";
-</script>
-
 <template>
 	<div class="header">
 		<div class="header-lf flx-center">
@@ -15,21 +5,34 @@ import Avatar from "./components/Avatar.vue";
 			<Breadcrumb></Breadcrumb>
 		</div>
 		<div class="header-ri flx-center">
-			<!-- Component size -->
+			<!-- Assembly size -->
 			<AssemblySize></AssemblySize>
 			<!-- Language -->
 			<Language></Language>
+			<!-- SearchMenu -->
+			<SearchMenu></SearchMenu>
 			<!-- Theme -->
 			<Theme></Theme>
 			<!-- Full screen -->
 			<Fullscreen></Fullscreen>
 			<!-- User name -->
-			<span class="username">lpf_test_admin</span>
+			<span class="username">lpf_test_demo</span>
 			<!-- Avatar -->
 			<Avatar></Avatar>
 		</div>
 	</div>
 </template>
+
+<script setup lang="ts">
+import CollapseIcon from "./components/CollapseIcon.vue";
+import Breadcrumb from "./components/Breadcrumb.vue";
+import SearchMenu from "./components/SearchMenu.vue";
+import Fullscreen from "./components/Fullscreen.vue";
+import Language from "./components/Language.vue";
+import AssemblySize from "./components/AssemblySize.vue";
+import Theme from "./components/Theme.vue";
+import Avatar from "./components/Avatar.vue";
+</script>
 
 <style scoped lang="scss">
 @import "./index.scss";
