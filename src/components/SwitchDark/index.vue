@@ -41,5 +41,6 @@ const onAddDarkChange = () => {
 		inactive-color="#dcdfe6"
 		:active-icon="Sunny"
 		:inactive-icon="Moon"
+		size="small"
 	/>
 </template>

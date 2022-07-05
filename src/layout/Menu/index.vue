@@ -31,7 +31,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { MenuStore } from "@/store/modules/menu";
 import { AuthStore } from "@/store/modules/auth";
-import { getMenuList } from "@/api/modules/login";
+// import { getMenuList } from "@/api/modules/login";
 import { handleRouter } from "@/utils/util";
 import { loadingSvg } from "@/utils/svg";
 import Logo from "./components/Logo.vue";
