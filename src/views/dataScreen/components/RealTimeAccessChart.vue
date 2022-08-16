@@ -18,7 +18,10 @@
 import { ref, Ref } from "vue";
 import { ECharts, init } from "echarts";
 import "echarts-liquidfill";
+
 const actualTotal: Ref<string> = ref("216908");
+// const actualTotal = ref<string>("216908")
+
 const initChart = (data: number = 1): ECharts => {
 	const charEle = document.getElementById("RealTimeAccessChart") as HTMLElement;
 	const charEch: ECharts = init(charEle);

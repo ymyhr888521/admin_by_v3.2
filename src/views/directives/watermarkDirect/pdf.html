@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.14.1/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit/dist/fontkit.umd.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+</head>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    p {
+        margin: 25px;
+        font-family: helvetica;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .small {
+        margin: 25px;
+        font-family: helvetica;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    button {
+        width: 266px;
+        padding: 15px 32px;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        background-color: #16aee1;
+        border: none;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <h1>给pdf文件添加水印</h1>
+    <button onclick="modify()">测试水印</button>
+    <p class="small">(点击后自动下载修改完成后的pdf文件)</p>
+</body>
+
+<script>
+    //1. 引入相关对象和方法
+    const { degrees, PDFDocument, rgb, StandardFonts } = PDFLib //引入PDFLib相关方法
+    const fontkit = window.fontkit //引入自定义字体工具包
+
+    // pdf浏览
+    async function modify() {
+        /*2. 获取pdf文件的arrarybuffer文件流
+        可请求后台接口返回的base64文件流，然后转成arrayBuffer类型
+        可访问前端项目中的本地文件
+        不能直接访问服务器链接文件，会有跨域问题*/
+        const url = '/public/11.pdf'
+        const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
+        // 将arraybuffer数据转成pdf文档
+        const pdfDoc = await PDFDocument.load(existingPdfBytes)
+
+        //3. 自定义字体，如不需要使用自定义字体可以将这一段全部注释掉，也不用下载自定义字体文件和自定义字体工具fontkit
+        //将自己下载好的.ttf文件放置项目中，然后访问文件路径
+        const fonturl = '/public/font/simhei.ttf'
+        const fontBytes = await fetch(fonturl).then((res) => res.arrayBuffer())
+        // 自定义字体挂载、fontkit为自定义字体注册工具
+        pdfDoc.registerFontkit(fontkit)
+        const customFont = await pdfDoc.embedFont(fontBytes)
+
+        // 内置字体（不支持中文）, 如果水印中不包含中文可直接用内置字体，本次这里没用到内置字体
+        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+
+        //4. 添加水印
+        //为每页pdf添加文字水印
+        const pages = pdfDoc.getPages()
+        for (let i = 0; i < pages.length; i++) {
+            const noPage = pages[i]
+            const { width, height } = noPage.getSize()
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 3; j++) {
+                    noPage.drawText('李鹏飞测试1111', {
+                        x: 230 * j,
+                        y: (height / 4) * i,
+                        size: 36,
+                        font: customFont, //这里使用的是自定义字体
+                        //使用上面定义好的内置字体 font:helveticaFont
+                        color: rgb(0.46, 0.53, 0.9),
+                        rotate: degrees(45),
+                        opacity: 0.3,
+                    })
+                }
+            }
+        }
+
+        //5. 保存pdf文件的unit64Arrary文件流
+        const pdfBytes = await pdfDoc.save()
+        download(pdfBytes, 'test.pdf', 'application/pdf') //下载带水印的pdf
+
+        //6. 新标签页预览、打印
+        let blobData = new Blob([pdfBytes], { type: 'application/pdf;Base64' })
+        let a = document.createElement('a')
+        a.target = '_blank'
+        a.href = window.URL.createObjectURL(blobData)
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+    }
+</script>
+
+</html>
